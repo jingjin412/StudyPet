@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "寵物共讀專注",
+    "slug": "pet-study-focus-mvp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./figure/studyapp_logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./figure/studyapp_logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFF8ED"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.laetitia.petstudyfocus"
+    },
+    "android": {
+      "package": "com.laetitia.petstudyfocus",
+      "adaptiveIcon": {
+        "foregroundImage": "./figure/studyapp_logo.png",
+        "backgroundColor": "#FFF8ED"
+      }
+    },
+    "extra": {
+      "demoMode": true
+    }
+  }
+}
