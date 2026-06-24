@@ -15,7 +15,8 @@ const homeIcons = {
   friend: require("../../figure/icon_friend.png"),
   identity: require("../../figure/icon_identity.png"),
   money: require("../../figure/icon_money.png"),
-  notebook: require("../../figure/icon_notebook.png")
+  notebook: require("../../figure/icon_notebook.png"),
+  pen: require("../../figure/icon_pen.png")
 } satisfies Record<string, ImageSourcePropType>;
 
 export function HomeScreen({ navigation }: Props) {
@@ -70,7 +71,7 @@ export function HomeScreen({ navigation }: Props) {
                   onPress={() => navigation.navigate("PetCloset")}
                   style={({ pressed }) => [styles.editPetButton, pressed && styles.pressed]}
                 >
-                  <Text style={styles.editPetText}>筆</Text>
+                  <Image resizeMode="contain" source={homeIcons.pen} style={styles.editPetIcon} />
                 </Pressable>
               </View>
               <View style={styles.heartPill}>
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
   },
   screen: {
     backgroundColor: "transparent",
-    gap: 8
+    gap: 11
   },
   topBar: {
     alignItems: "center",
@@ -339,10 +340,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 35
   },
-  editPetText: {
-    color: "#B17A47",
-    fontSize: 16,
-    fontWeight: "900"
+  editPetIcon: {
+    height: 22,
+    width: 22
   },
   heartPill: {
     alignItems: "center",
@@ -453,7 +453,8 @@ const styles = StyleSheet.create({
     borderRadius: 23,
     borderWidth: 1,
     flexDirection: "row",
-    paddingVertical: spacing.xs
+    minHeight: 72,
+    paddingVertical: spacing.sm
   },
   statItem: {
     alignItems: "center",
@@ -485,18 +486,18 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     color: "#746961",
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: "900"
   },
   statValue: {
     color: "#4A3322",
-    fontSize: 22,
+    fontSize: 19,
     fontWeight: "900",
     letterSpacing: 0
   },
   statSuffix: {
     color: "#746961",
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "900"
   },
   primaryCta: {
@@ -508,7 +509,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: spacing.md,
     justifyContent: "center",
-    minHeight: 62,
+    minHeight: 70,
     paddingHorizontal: spacing.lg
   },
   primaryIcon: {
@@ -538,7 +539,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flexDirection: "row",
     gap: spacing.sm,
-    minHeight: 98,
+    minHeight: 104,
     padding: spacing.sm
   },
   roomThumb: {
@@ -624,7 +625,7 @@ const styles = StyleSheet.create({
   },
   shortcutRow: {
     flexDirection: "row",
-    gap: spacing.sm
+    gap: spacing.md
   },
   shortcutTile: {
     alignItems: "center",
@@ -634,7 +635,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flex: 1,
     gap: spacing.xs,
-    minHeight: 80,
+    minHeight: 86,
     justifyContent: "center",
     paddingHorizontal: spacing.sm
   },

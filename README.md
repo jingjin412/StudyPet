@@ -134,7 +134,7 @@ npm run typecheck
   - `capy_study.png`: 讀書狀態
   - `capy_class.png`: 教室共讀狀態
 - 首頁背景使用 `background.png`。
-- 首頁功能 icon 使用 `icon_book.png`、`icon_clock.png`、`icon_closet.png`、`icon_friend.png`、`icon_identity.png`、`icon_money.png`、`icon_notebook.png`。
+- 首頁功能 icon 使用 `icon_book.png`、`icon_clock.png`、`icon_closet.png`、`icon_friend.png`、`icon_identity.png`、`icon_money.png`、`icon_notebook.png`、`icon_pen.png`。
 - app icon 與 Android adaptive icon 使用 `studyapp_logo.png`。
 - splash 使用 `background.png`。
 
