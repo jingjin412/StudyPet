@@ -7,8 +7,8 @@
     "icon": "./figure/studyapp_logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./figure/studyapp_logo.png",
-      "resizeMode": "contain",
+      "image": "./figure/background.png",
+      "resizeMode": "cover",
       "backgroundColor": "#FFF8ED"
     },
     "ios": {

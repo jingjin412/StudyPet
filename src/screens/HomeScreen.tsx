@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, ImageSourcePropType, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Screen } from "../components/Screen";
 import { useAppState } from "../state/AppContext";
@@ -8,13 +8,30 @@ import { RootStackParamList } from "../types";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
+const homeIcons = {
+  book: require("../../figure/icon_book.png"),
+  clock: require("../../figure/icon_clock.png"),
+  closet: require("../../figure/icon_closet.png"),
+  friend: require("../../figure/icon_friend.png"),
+  identity: require("../../figure/icon_identity.png"),
+  money: require("../../figure/icon_money.png"),
+  notebook: require("../../figure/icon_notebook.png")
+} satisfies Record<string, ImageSourcePropType>;
+
 export function HomeScreen({ navigation }: Props) {
   const { user, pet, friendsInRoom } = useAppState();
   const friendsStudying = friendsInRoom.length;
   const expProgress = `${pet.exp}%` as `${number}%`;
 
   return (
-    <Screen contentStyle={styles.screen} edges={["top", "bottom"]} scroll={false}>
+    <ImageBackground
+      imageStyle={styles.appBackgroundImage}
+      resizeMode="cover"
+      source={require("../../figure/background.png")}
+      style={styles.appBackground}
+    >
+      <View pointerEvents="none" style={styles.backgroundVeil} />
+      <Screen contentStyle={styles.screen} edges={["top", "bottom"]} safeAreaStyle={styles.transparentSafeArea} scroll={false}>
       <View style={styles.topBar}>
         <View style={styles.titleBlock}>
           <Text numberOfLines={1} adjustsFontSizeToFit style={styles.greeting}>
@@ -38,7 +55,7 @@ export function HomeScreen({ navigation }: Props) {
         <ImageBackground
           imageStyle={styles.heroBackground}
           resizeMode="cover"
-          source={require("../../figure/classroom.png")}
+          source={require("../../figure/background.png")}
           style={styles.heroBackgroundWrap}
         >
           <View style={styles.heroWash} />
@@ -90,9 +107,9 @@ export function HomeScreen({ navigation }: Props) {
       </View>
 
       <View style={styles.statsRow}>
-        <StatItem label="今日專注" value={user.todayFocusMinutes} suffix="分鐘" icon="時" />
-        <StatItem label="金幣" value={user.coins} icon="金" />
-        <StatItem label="朋友共讀中" value={friendsStudying} suffix="位" icon="友" />
+        <StatItem label="今日專注" value={user.todayFocusMinutes} suffix="分鐘" icon={homeIcons.clock} />
+        <StatItem label="金幣" value={user.coins} icon={homeIcons.money} />
+        <StatItem label="朋友共讀中" value={friendsStudying} suffix="位" icon={homeIcons.friend} />
       </View>
 
       <Pressable
@@ -100,7 +117,7 @@ export function HomeScreen({ navigation }: Props) {
         onPress={() => navigation.navigate("StartStudy")}
         style={({ pressed }) => [styles.primaryCta, pressed && styles.pressed]}
       >
-        <Text style={styles.primaryIcon}>書</Text>
+        <Image resizeMode="contain" source={homeIcons.book} style={styles.primaryIcon} />
         <View style={styles.ctaTextWrap}>
           <Text style={styles.primaryCtaText}>開始讀書</Text>
           <Text style={styles.primaryCtaSubtext}>專注當下，和水豚一起成長！</Text>
@@ -142,11 +159,12 @@ export function HomeScreen({ navigation }: Props) {
       </Pressable>
 
       <View style={styles.shortcutRow}>
-        <ShortcutTile label="寵物衣櫃" icon="衣" onPress={() => navigation.navigate("PetCloset")} />
-        <ShortcutTile label="讀書紀錄" icon="錄" onPress={() => navigation.navigate("StudyHistory")} />
-        <ShortcutTile label="個人資料" icon="人" onPress={() => navigation.navigate("UserProfile")} />
+        <ShortcutTile label="寵物衣櫃" icon={homeIcons.closet} onPress={() => navigation.navigate("PetCloset")} />
+        <ShortcutTile label="讀書紀錄" icon={homeIcons.notebook} onPress={() => navigation.navigate("StudyHistory")} />
+        <ShortcutTile label="個人資料" icon={homeIcons.identity} onPress={() => navigation.navigate("UserProfile")} />
       </View>
-    </Screen>
+      </Screen>
+    </ImageBackground>
   );
 }
 
@@ -156,7 +174,7 @@ function StatItem({
   suffix,
   value
 }: {
-  icon: string;
+  icon: ImageSourcePropType;
   label: string;
   suffix?: string;
   value: number;
@@ -164,7 +182,7 @@ function StatItem({
   return (
     <View style={styles.statItem}>
       <View style={styles.statIconCircle}>
-        <Text style={styles.statIconText}>{icon}</Text>
+        <Image resizeMode="contain" source={icon} style={styles.statIconImage} />
       </View>
       <View style={styles.statTextBlock}>
         <Text numberOfLines={1} style={styles.statLabel}>
@@ -179,11 +197,11 @@ function StatItem({
   );
 }
 
-function ShortcutTile({ icon, label, onPress }: { icon: string; label: string; onPress: () => void }) {
+function ShortcutTile({ icon, label, onPress }: { icon: ImageSourcePropType; label: string; onPress: () => void }) {
   return (
     <Pressable accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.shortcutTile, pressed && styles.pressed]}>
       <View style={styles.shortcutIconBox}>
-        <Text style={styles.shortcutIcon}>{icon}</Text>
+        <Image resizeMode="contain" source={icon} style={styles.shortcutIcon} />
       </View>
       <Text numberOfLines={1} adjustsFontSizeToFit style={styles.shortcutLabel}>
         {label}
@@ -194,16 +212,26 @@ function ShortcutTile({ icon, label, onPress }: { icon: string; label: string; o
 
 function UserIcon() {
   return (
-    <View style={styles.userIcon}>
-      <View style={styles.userIconHead} />
-      <View style={styles.userIconBody} />
-    </View>
+    <Image resizeMode="contain" source={homeIcons.identity} style={styles.userIcon} />
   );
 }
 
 const styles = StyleSheet.create({
+  appBackground: {
+    flex: 1
+  },
+  appBackgroundImage: {
+    opacity: 1
+  },
+  backgroundVeil: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(255,253,248,0.12)"
+  },
+  transparentSafeArea: {
+    backgroundColor: "transparent"
+  },
   screen: {
-    backgroundColor: "#FFFDF8",
+    backgroundColor: "transparent",
     gap: 10
   },
   topBar: {
@@ -230,7 +258,7 @@ const styles = StyleSheet.create({
   },
   profileButton: {
     alignItems: "center",
-    backgroundColor: "#FFFDF8",
+    backgroundColor: "rgba(255,253,248,0.72)",
     borderColor: "#E8D8C2",
     borderRadius: 36,
     borderWidth: 3,
@@ -251,33 +279,15 @@ const styles = StyleSheet.create({
     width: 18
   },
   userIcon: {
-    alignItems: "center",
-    backgroundColor: "#EAF3DC",
-    borderRadius: 25,
-    height: 50,
-    justifyContent: "center",
-    width: 50
-  },
-  userIconHead: {
-    backgroundColor: "#629255",
-    borderRadius: 9,
-    height: 18,
-    width: 18
-  },
-  userIconBody: {
-    backgroundColor: "#629255",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    height: 17,
-    marginTop: 3,
-    width: 32
+    height: 48,
+    width: 48
   },
   pressed: {
     opacity: 0.78,
     transform: [{ scale: 0.99 }]
   },
   heroCard: {
-    backgroundColor: "#FFF8EA",
+    backgroundColor: "rgba(255,248,234,0.26)",
     borderColor: "#E8D8C2",
     borderRadius: 30,
     borderWidth: 2,
@@ -288,12 +298,12 @@ const styles = StyleSheet.create({
     flex: 1
   },
   heroBackground: {
-    opacity: 0.78,
-    transform: [{ scale: 1.12 }]
+    opacity: 1,
+    transform: [{ scale: 1.05 }]
   },
   heroWash: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(255,248,234,0.36)"
+    backgroundColor: "rgba(255,248,234,0.06)"
   },
   heroContent: {
     flex: 1,
@@ -438,7 +448,7 @@ const styles = StyleSheet.create({
   },
   statsRow: {
     alignItems: "center",
-    backgroundColor: "#FFFDF8",
+    backgroundColor: "rgba(255,253,248,0.68)",
     borderColor: "#EEE1CE",
     borderRadius: 24,
     borderWidth: 1,
@@ -466,10 +476,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 40
   },
-  statIconText: {
-    color: "#5F9556",
-    fontSize: 15,
-    fontWeight: "900"
+  statIconImage: {
+    height: 28,
+    width: 28
   },
   statTextBlock: {
     minWidth: 0
@@ -503,9 +512,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg
   },
   primaryIcon: {
-    color: "#FFFFFF",
-    fontSize: 25,
-    fontWeight: "900"
+    height: 42,
+    width: 42
   },
   ctaTextWrap: {
     alignItems: "center"
@@ -524,7 +532,7 @@ const styles = StyleSheet.create({
   },
   roomCard: {
     alignItems: "center",
-    backgroundColor: "#FFFDF8",
+    backgroundColor: "rgba(255,253,248,0.72)",
     borderColor: "#E8D8C2",
     borderRadius: 24,
     borderWidth: 1,
@@ -620,7 +628,7 @@ const styles = StyleSheet.create({
   },
   shortcutTile: {
     alignItems: "center",
-    backgroundColor: "#FFFDF8",
+    backgroundColor: "rgba(255,253,248,0.72)",
     borderColor: "#E8D8C2",
     borderRadius: 22,
     borderWidth: 1,
@@ -639,9 +647,8 @@ const styles = StyleSheet.create({
     width: 52
   },
   shortcutIcon: {
-    color: "#8B623F",
-    fontSize: 20,
-    fontWeight: "900"
+    height: 36,
+    width: 36
   },
   shortcutLabel: {
     color: "#5A4638",

@@ -28,7 +28,7 @@ export function UserProfileScreen({ navigation }: Props) {
     <Screen>
       <Card>
         <View style={styles.identityRow}>
-          <Image resizeMode="cover" source={require("../../figure/studyapp_logo.jpg")} style={styles.avatar} />
+          <Image resizeMode="contain" source={require("../../figure/icon_identity.png")} style={styles.avatar} />
           <View style={styles.identityText}>
             <Text style={styles.name}>{user.nickname}</Text>
             <Text style={styles.id}>ID {user.id}</Text>

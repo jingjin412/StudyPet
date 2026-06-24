@@ -132,8 +132,10 @@ npm run typecheck
   - `capy_normal.png`: 平常狀態
   - `capy_study.png`: 讀書狀態
   - `capy_class.png`: 教室共讀狀態
-- app logo 使用 `studyapp_logo`。
-- Expo app icon、splash、Android adaptive icon 都已設定到 app config。
+- 首頁背景使用 `background.png`。
+- 首頁功能 icon 使用 `icon_book.png`、`icon_clock.png`、`icon_closet.png`、`icon_friend.png`、`icon_identity.png`、`icon_money.png`、`icon_notebook.png`。
+- app icon 與 Android adaptive icon 使用 `studyapp_logo.png`。
+- splash 使用 `background.png`。
 
 ## 已有按鈕但尚未完整製作的部分
 

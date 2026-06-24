@@ -8,20 +8,21 @@ type ScreenProps = {
   children: ReactNode;
   contentStyle?: StyleProp<ViewStyle>;
   edges?: Edge[];
+  safeAreaStyle?: StyleProp<ViewStyle>;
   scroll?: boolean;
 };
 
-export function Screen({ children, contentStyle, edges = ["bottom"], scroll = true }: ScreenProps) {
+export function Screen({ children, contentStyle, edges = ["bottom"], safeAreaStyle, scroll = true }: ScreenProps) {
   if (!scroll) {
     return (
-      <SafeAreaView edges={edges} style={styles.safeArea}>
+      <SafeAreaView edges={edges} style={[styles.safeArea, safeAreaStyle]}>
         <View style={[styles.content, contentStyle]}>{children}</View>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView edges={edges} style={styles.safeArea}>
+    <SafeAreaView edges={edges} style={[styles.safeArea, safeAreaStyle]}>
       <ScrollView contentContainerStyle={[styles.scrollContent, contentStyle]} showsVerticalScrollIndicator={false}>
         {children}
       </ScrollView>

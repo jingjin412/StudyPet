@@ -32,7 +32,11 @@ export default function App() {
               contentStyle: { backgroundColor: colors.background }
             }}
           >
-            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ contentStyle: { backgroundColor: "transparent" }, headerShown: false }}
+            />
             <Stack.Screen name="StartStudy" component={StartStudyScreen} options={{ title: "開始讀書" }} />
             <Stack.Screen name="Focus" component={FocusScreen} options={{ title: "專注中", gestureEnabled: false }} />
             <Stack.Screen name="Result" component={ResultScreen} options={{ title: "讀書結算", gestureEnabled: false }} />
