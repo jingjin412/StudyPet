@@ -50,8 +50,9 @@ export function ResultScreen({ navigation }: Props) {
       <PhotoCheckIn
         title="結束後打卡"
         description="拍下完成進度，前後都有照片會額外獲得金幣。"
+        photoUri={studySession.afterPhotoUri}
         taken={studySession.hasAfterPhoto}
-        onTakePhoto={markAfterPhoto}
+        onPhotoTaken={markAfterPhoto}
       />
 
       <Card>

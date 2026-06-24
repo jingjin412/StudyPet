@@ -13,15 +13,27 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.laetitia.petstudyfocus"
+      "bundleIdentifier": "com.laetitia.petstudyfocus",
+      "infoPlist": {
+        "NSCameraUsageDescription": "需要使用相機拍攝讀書前後的打卡照片。"
+      }
     },
     "android": {
       "package": "com.laetitia.petstudyfocus",
+      "permissions": ["CAMERA"],
       "adaptiveIcon": {
         "foregroundImage": "./figure/studyapp_logo.png",
         "backgroundColor": "#FFF8ED"
       }
     },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "需要使用相機拍攝讀書前後的打卡照片。"
+        }
+      ]
+    ],
     "extra": {
       "demoMode": true
     }

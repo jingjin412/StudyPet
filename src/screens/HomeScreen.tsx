@@ -55,7 +55,7 @@ export function HomeScreen({ navigation }: Props) {
         <ImageBackground
           imageStyle={styles.heroBackground}
           resizeMode="cover"
-          source={require("../../figure/background.png")}
+          source={require("../../figure/background_capy.png")}
           style={styles.heroBackgroundWrap}
         >
           <View style={styles.heroWash} />
@@ -101,7 +101,7 @@ export function HomeScreen({ navigation }: Props) {
               <Text style={styles.traitText}>{pet.equippedItems.join("、") || "無配件"}</Text>
             </View>
 
-            <Image resizeMode="contain" source={require("../../figure/capy_normal.png")} style={styles.capyImage} />
+            <Image resizeMode="contain" source={require("../../figure/capy_study.png")} style={styles.capyImage} />
           </View>
         </ImageBackground>
       </View>
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
   },
   screen: {
     backgroundColor: "transparent",
-    gap: 10
+    gap: 8
   },
   topBar: {
     alignItems: "center",
@@ -245,14 +245,14 @@ const styles = StyleSheet.create({
   },
   greeting: {
     color: "#4A3322",
-    fontSize: 42,
+    fontSize: 34,
     fontWeight: "900",
     letterSpacing: 0,
-    lineHeight: 48
+    lineHeight: 40
   },
   userId: {
     color: "#766B63",
-    fontSize: 17,
+    fontSize: 14,
     fontWeight: "900",
     letterSpacing: 0
   },
@@ -260,27 +260,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255,253,248,0.72)",
     borderColor: "#E8D8C2",
-    borderRadius: 36,
-    borderWidth: 3,
-    height: 68,
+    borderRadius: 31,
+    borderWidth: 2,
+    height: 58,
     justifyContent: "center",
     marginLeft: spacing.md,
-    width: 68
+    width: 58
   },
   noticeDot: {
     backgroundColor: "#F27754",
     borderColor: "#FFFDF8",
     borderRadius: 9,
     borderWidth: 2,
-    height: 18,
+    height: 15,
     position: "absolute",
     right: 2,
     top: 5,
-    width: 18
+    width: 15
   },
   userIcon: {
-    height: 48,
-    width: 48
+    height: 40,
+    width: 40
   },
   pressed: {
     opacity: 0.78,
@@ -289,9 +289,9 @@ const styles = StyleSheet.create({
   heroCard: {
     backgroundColor: "rgba(255,248,234,0.26)",
     borderColor: "#E8D8C2",
-    borderRadius: 30,
+    borderRadius: 28,
     borderWidth: 2,
-    height: 300,
+    height: 258,
     overflow: "hidden"
   },
   heroBackgroundWrap: {
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
   },
   heroContent: {
     flex: 1,
-    padding: 22
+    padding: 18
   },
   heroHeader: {
     alignItems: "center",
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
   petNickname: {
     color: "#4A3322",
     flexShrink: 1,
-    fontSize: 34,
+    fontSize: 27,
     fontWeight: "900",
     letterSpacing: 0
   },
@@ -333,11 +333,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255,255,255,0.9)",
     borderColor: "#E8D8C2",
-    borderRadius: 22,
+    borderRadius: 18,
     borderWidth: 1,
-    height: 42,
+    height: 35,
     justifyContent: "center",
-    width: 42
+    width: 35
   },
   editPetText: {
     color: "#B17A47",
@@ -348,39 +348,39 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255,255,255,0.92)",
     borderColor: "#E8D8C2",
-    borderRadius: 25,
+    borderRadius: 22,
     borderWidth: 1,
     flexDirection: "row",
     gap: spacing.xs,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs
   },
   heart: {
     color: "#F08091",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "900"
   },
   heartValue: {
     color: "#5C4A3C",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "900"
   },
   levelPill: {
     alignSelf: "flex-start",
     backgroundColor: "#75A465",
-    borderRadius: 18,
-    marginTop: spacing.sm,
-    paddingHorizontal: spacing.md,
+    borderRadius: 16,
+    marginTop: spacing.xs,
+    paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,
     zIndex: 2
   },
   levelText: {
     color: "#FFFFFF",
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "900"
   },
   expBlock: {
-    marginTop: spacing.md,
+    marginTop: spacing.sm,
     width: "44%",
     zIndex: 2
   },
@@ -392,12 +392,12 @@ const styles = StyleSheet.create({
   },
   expLabel: {
     color: "#6E6258",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "900"
   },
   expValue: {
     color: "#5B8E52",
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "900"
   },
   expTrack: {
@@ -405,7 +405,7 @@ const styles = StyleSheet.create({
     borderColor: "#E8D8C2",
     borderRadius: 12,
     borderWidth: 2,
-    height: 18,
+    height: 14,
     overflow: "hidden"
   },
   expFill: {
@@ -418,20 +418,20 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     backgroundColor: "rgba(255,255,255,0.94)",
     borderColor: "#E8D8C2",
-    borderRadius: 23,
+    borderRadius: 20,
     borderWidth: 1,
     flexDirection: "row",
     gap: spacing.sm,
     marginTop: "auto",
     maxWidth: "58%",
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
     zIndex: 2
   },
   traitText: {
     color: "#5A4638",
     flexShrink: 1,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "900"
   },
   traitDivider: {
@@ -440,20 +440,20 @@ const styles = StyleSheet.create({
     width: 1
   },
   capyImage: {
-    bottom: 12,
-    height: 230,
+    bottom: 4,
+    height: 206,
     position: "absolute",
     right: 8,
-    width: "58%"
+    width: "56%"
   },
   statsRow: {
     alignItems: "center",
     backgroundColor: "rgba(255,253,248,0.68)",
     borderColor: "#EEE1CE",
-    borderRadius: 24,
+    borderRadius: 23,
     borderWidth: 1,
     flexDirection: "row",
-    paddingVertical: spacing.sm
+    paddingVertical: spacing.xs
   },
   statItem: {
     alignItems: "center",
@@ -461,42 +461,42 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     flex: 1,
     flexDirection: "row",
-    gap: spacing.sm,
+    gap: spacing.xs,
     justifyContent: "center",
     minWidth: 0,
-    paddingHorizontal: spacing.sm
+    paddingHorizontal: spacing.xs
   },
   statIconCircle: {
     alignItems: "center",
     backgroundColor: "#F4EFD9",
     borderColor: "#E6D8BE",
-    borderRadius: 20,
+    borderRadius: 18,
     borderWidth: 1,
-    height: 40,
+    height: 36,
     justifyContent: "center",
-    width: 40
+    width: 36
   },
   statIconImage: {
-    height: 28,
-    width: 28
+    height: 25,
+    width: 25
   },
   statTextBlock: {
     minWidth: 0
   },
   statLabel: {
     color: "#746961",
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "900"
   },
   statValue: {
     color: "#4A3322",
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: "900",
     letterSpacing: 0
   },
   statSuffix: {
     color: "#746961",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "900"
   },
   primaryCta: {
@@ -504,29 +504,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#79A965",
     borderBottomColor: "#5C8E52",
     borderBottomWidth: 4,
-    borderRadius: 31,
+    borderRadius: 29,
     flexDirection: "row",
     gap: spacing.md,
     justifyContent: "center",
-    minHeight: 74,
+    minHeight: 62,
     paddingHorizontal: spacing.lg
   },
   primaryIcon: {
-    height: 42,
-    width: 42
+    height: 36,
+    width: 36
   },
   ctaTextWrap: {
     alignItems: "center"
   },
   primaryCtaText: {
     color: "#FFFFFF",
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: "900",
     letterSpacing: 0
   },
   primaryCtaSubtext: {
     color: "rgba(255,255,255,0.82)",
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "800",
     marginTop: -2
   },
@@ -534,18 +534,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255,253,248,0.72)",
     borderColor: "#E8D8C2",
-    borderRadius: 24,
+    borderRadius: 22,
     borderWidth: 1,
     flexDirection: "row",
-    gap: spacing.md,
-    minHeight: 112,
+    gap: spacing.sm,
+    minHeight: 98,
     padding: spacing.sm
   },
   roomThumb: {
     borderRadius: 16,
-    height: 88,
+    height: 76,
     overflow: "hidden",
-    width: 108
+    width: 94
   },
   roomThumbImage: {
     borderRadius: 16,
@@ -568,7 +568,7 @@ const styles = StyleSheet.create({
   roomTitle: {
     color: "#4A3322",
     flex: 1,
-    fontSize: 22,
+    fontSize: 19,
     fontWeight: "900"
   },
   publicPill: {
@@ -577,7 +577,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     color: "#5A8E4C",
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "900",
     overflow: "hidden",
     paddingHorizontal: spacing.xs,
@@ -585,7 +585,7 @@ const styles = StyleSheet.create({
   },
   roomMeta: {
     color: "#746961",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "800"
   },
   friendFaces: {
@@ -595,31 +595,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#FFF8EA",
     borderColor: "#E8D8C2",
-    borderRadius: 19,
+    borderRadius: 17,
     borderWidth: 1,
-    height: 38,
+    height: 34,
     justifyContent: "center",
     marginRight: -7,
     overflow: "hidden",
-    width: 38
+    width: 34
   },
   friendFaceImage: {
-    height: 34,
-    width: 34
+    height: 30,
+    width: 30
   },
   joinButton: {
     alignItems: "center",
     backgroundColor: "#D7A06A",
     borderBottomColor: "#B9824F",
     borderBottomWidth: 3,
-    borderRadius: 24,
+    borderRadius: 22,
     justifyContent: "center",
-    minHeight: 50,
-    paddingHorizontal: spacing.md
+    minHeight: 44,
+    paddingHorizontal: spacing.sm
   },
   joinText: {
     color: "#FFFFFF",
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "900"
   },
   shortcutRow: {
@@ -630,29 +630,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255,253,248,0.72)",
     borderColor: "#E8D8C2",
-    borderRadius: 22,
+    borderRadius: 20,
     borderWidth: 1,
     flex: 1,
     gap: spacing.xs,
-    minHeight: 94,
+    minHeight: 80,
     justifyContent: "center",
     paddingHorizontal: spacing.sm
   },
   shortcutIconBox: {
     alignItems: "center",
     backgroundColor: "#F7E9D3",
-    borderRadius: 18,
-    height: 46,
+    borderRadius: 16,
+    height: 40,
     justifyContent: "center",
-    width: 52
+    width: 46
   },
   shortcutIcon: {
-    height: 36,
-    width: 36
+    height: 31,
+    width: 31
   },
   shortcutLabel: {
     color: "#5A4638",
-    fontSize: 17,
+    fontSize: 14,
     fontWeight: "900"
   }
 });

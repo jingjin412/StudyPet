@@ -19,6 +19,7 @@ type StartSessionInput = {
   duration: DurationOption;
   mode: StudySession["mode"];
   hasBeforePhoto: boolean;
+  beforePhotoUri?: string;
 };
 
 type AppContextValue = {
@@ -29,7 +30,7 @@ type AppContextValue = {
   studyHistory: StudyRecord[];
   startSession: (input: StartSessionInput) => void;
   updateUserProfile: (profile: Pick<User, "id" | "nickname">) => void;
-  markAfterPhoto: () => void;
+  markAfterPhoto: (photoUri: string) => void;
   setCompletionStatus: (status: StudySession["completionStatus"]) => void;
   completeSession: () => void;
   changePetColor: (color: PetColor) => void;
@@ -90,8 +91,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setUser((current) => ({ ...current, ...profile }));
   };
 
-  const markAfterPhoto = () => {
-    setStudySession((current) => (current ? { ...current, hasAfterPhoto: true } : current));
+  const markAfterPhoto = (photoUri: string) => {
+    setStudySession((current) => (current ? { ...current, afterPhotoUri: photoUri, hasAfterPhoto: true } : current));
   };
 
   const setCompletionStatus = (status: StudySession["completionStatus"]) => {
@@ -134,7 +135,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
         duration: studySession.duration,
         mode: studySession.mode,
         exp: rewards.exp,
-        coins: rewards.coins
+        coins: rewards.coins,
+        beforePhotoUri: studySession.beforePhotoUri,
+        afterPhotoUri: completed.afterPhotoUri
       },
       ...previous
     ]);

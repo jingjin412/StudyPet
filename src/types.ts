@@ -38,7 +38,9 @@ export type StudySession = {
   duration: DurationOption;
   mode: StudyMode;
   hasBeforePhoto: boolean;
+  beforePhotoUri?: string;
   hasAfterPhoto: boolean;
+  afterPhotoUri?: string;
   completionStatus: CompletionStatus;
   earnedExp: number;
   earnedCoins: number;
@@ -58,4 +60,6 @@ export type StudyRecord = {
   mode: StudyMode;
   exp: number;
   coins: number;
+  beforePhotoUri?: string;
+  afterPhotoUri?: string;
 };

@@ -62,7 +62,7 @@ npm run typecheck
 - 可以選擇模式：
   - 個人讀書
   - 好友共讀
-- 有開始前打卡區塊。
+- 有開始前拍照打卡區塊，會開啟相機並顯示照片預覽。
 - 按「開始專注」後會進入倒數讀書畫面。
 
 ### 專注倒數
@@ -80,7 +80,7 @@ npm run typecheck
   - 完成
   - 部分完成
   - 沒完成
-- 有結束後打卡區塊。
+- 有結束後拍照打卡區塊，會開啟相機並顯示照片預覽。
 - 顯示本次獲得的 EXP 與金幣。
 - 回首頁後會更新：
   - 使用者金幣
@@ -123,6 +123,7 @@ npm run typecheck
   - 模式
   - EXP
   - 金幣
+  - 開始前 / 結束後打卡縮圖
 - 完成新讀書流程後，會把「今天」的新紀錄加到最前面。
 
 ### 寵物與視覺素材
@@ -141,13 +142,14 @@ npm run typecheck
 
 ### 拍照打卡
 
-目前「開始前打卡」與「結束後打卡」都只是 placeholder。
+目前「開始前打卡」與「結束後打卡」已串接相機。
 
-- 按鈕名稱是「模擬拍照打卡」。
-- 按下後只會把狀態改成已拍照。
-- 尚未串接真實相機。
-- 尚未儲存照片。
-- 尚未顯示真實照片預覽。
+- 按鈕會要求相機權限。
+- 拍照後會在打卡區塊顯示照片預覽。
+- 開始前照片會跟著本次讀書 session 進入專注流程。
+- 結束後照片會更新本次讀書 session。
+- 前後都有拍照仍會觸發額外金幣獎勵。
+- 目前照片 URI 只存在 app runtime state，尚未做永久保存。
 
 ### 共讀教室
 
@@ -200,7 +202,7 @@ npm run typecheck
 - `src/screens/PetClosetScreen.tsx`: 寵物衣櫃頁。
 - `src/screens/StudyHistoryScreen.tsx`: 讀書紀錄頁。
 - `src/components/PetAvatar.tsx`: capy 圖片狀態切換。
-- `src/components/PhotoCheckIn.tsx`: 打卡 placeholder 元件。
+- `src/components/PhotoCheckIn.tsx`: 相機拍照打卡與照片預覽元件。
 - `src/data/rewards.ts`: EXP 與金幣獎勵規則。
 
 ## 目前技術狀態

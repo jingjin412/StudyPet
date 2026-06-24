@@ -1,28 +1,71 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { useState } from "react";
+import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { colors, spacing } from "../theme";
 
 export function PhotoCheckIn({
   title,
   description,
+  photoUri,
   taken,
-  onTakePhoto
+  onPhotoTaken
 }: {
   title: string;
   description: string;
+  photoUri?: string;
   taken: boolean;
-  onTakePhoto: () => void;
+  onPhotoTaken: (photoUri: string) => void;
 }) {
+  const [isOpeningCamera, setIsOpeningCamera] = useState(false);
+
+  const takePhoto = async () => {
+    if (isOpeningCamera) {
+      return;
+    }
+
+    setIsOpeningCamera(true);
+
+    const permission = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (!permission.granted) {
+      Alert.alert("需要相機權限", "請允許相機權限，才能完成拍照打卡。");
+      setIsOpeningCamera(false);
+      return;
+    }
+
+    try {
+      const result = await ImagePicker.launchCameraAsync({
+        allowsEditing: false,
+        quality: 0.8
+      });
+
+      if (result.canceled || !result.assets[0]?.uri) {
+        return;
+      }
+
+      onPhotoTaken(result.assets[0].uri);
+    } finally {
+      setIsOpeningCamera(false);
+    }
+  };
+
   return (
     <View style={[styles.preview, taken && styles.previewTaken]}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
       <View style={styles.placeholder}>
-        <Text style={styles.placeholderIcon}>{taken ? "✓" : "📷"}</Text>
-        <Text style={styles.placeholderText}>{taken ? "已加入打卡照片 placeholder" : "照片預覽區"}</Text>
+        {photoUri ? (
+          <Image resizeMode="cover" source={{ uri: photoUri }} style={styles.photoPreview} />
+        ) : (
+          <>
+            <Text style={styles.placeholderIcon}>相機</Text>
+            <Text style={styles.placeholderText}>照片預覽區</Text>
+          </>
+        )}
       </View>
-      <Pressable onPress={onTakePhoto} style={({ pressed }) => [styles.photoButton, pressed && styles.pressed]}>
-        <Text style={styles.photoButtonText}>{taken ? "重新模擬拍照" : "模擬拍照打卡"}</Text>
+      <Pressable onPress={takePhoto} style={({ pressed }) => [styles.photoButton, pressed && styles.pressed]}>
+        <Text style={styles.photoButtonText}>{isOpeningCamera ? "開啟相機中..." : taken ? "重新拍照打卡" : "拍照打卡"}</Text>
       </Pressable>
     </View>
   );
@@ -60,8 +103,9 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
     borderWidth: 1,
     gap: spacing.xs,
-    minHeight: 120,
-    justifyContent: "center"
+    height: 150,
+    justifyContent: "center",
+    overflow: "hidden"
   },
   placeholderIcon: {
     color: colors.primaryDark,
@@ -73,6 +117,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "700",
     letterSpacing: 0
+  },
+  photoPreview: {
+    ...StyleSheet.absoluteFillObject
   },
   photoButton: {
     alignItems: "center",
